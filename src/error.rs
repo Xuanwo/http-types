@@ -109,7 +109,7 @@ impl Error {
     /// `RUST_LIB_BACKTRACE=1`.
     #[cfg(backtrace)]
     pub fn backtrace(&self) -> Option<&std::backtrace::Backtrace> {
-        let backtrace = self.error.backtrace();
+        let backtrace = self.error.backtrace()?;
         if let std::backtrace::BacktraceStatus::Captured = backtrace.status() {
             Some(backtrace)
         } else {
